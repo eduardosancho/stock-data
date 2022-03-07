@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../logo.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavigationBar = () => {
   const exclamation = '!';
@@ -9,6 +10,7 @@ const NavigationBar = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
+        <FontAwesomeIcon icon="bars" size="xl" color="#fff" />
         <Navbar.Brand href="#home">
           <img
             alt="logo"
@@ -17,8 +19,9 @@ const NavigationBar = () => {
             height="30"
             className="d-inline-block align-top"
           />{' '}
-          React Bootstrap
+          Stock Data
         </Navbar.Brand>
+        <FontAwesomeIcon icon="user" size="xl" color="#fff" />
       </Container>
     </Navbar>
   )
