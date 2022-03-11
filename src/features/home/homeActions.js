@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   statusHome: 'idle',
-  results: [],
+  resultData: [],
   currentPage: 'home',
 };
 
@@ -30,18 +30,39 @@ const homeSlice = createSlice({
         ...state,
         statusHome: 'loading',
       }))
-      .addCase(fetchCurrentStock.rejected, (state) => ({
-        ...state,
-        statusHome: 'rejected',
-      }))
-      .addCase(fetchCurrentStock.fulfilled, (state, action) => ({
-        ...action,
-        statusHome: 'fulfilled',
-      }));
+      .addCase(fetchCurrentStock.fulfilled, (state, action) => {
+        let obj = {};
+        if (action.payload[0]) {
+          const data = action.payload[0];
+          const {
+            symbol: company,
+            price: stockPrice,
+            volume: stockVolume,
+          } = data;
+          const newData = {
+            company,
+            stockPrice,
+            stockVolume,
+          };
+          console.log('one dispatch', newData);
+          obj = {
+            ...state,
+            resultData: [...state.resultData, newData],
+            statusHome: 'fulfilled',
+          };
+        } else {
+          console.log(action.payload);
+          obj = {
+            ...state,
+            statusHome: 'fulfilled',
+          };
+        }
+        return obj;
+      });
   },
 });
 
-export const selectResults = (state) => state.home.results;
+export const selectResultData = (state) => state.home.resultData;
 export const selectStatusHome = (state) => state.home.statusHome;
 export const selectTotal = (state) => state.home.total;
 export const selectPageState = (state) => state.home.currentPage;
