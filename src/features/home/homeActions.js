@@ -13,12 +13,8 @@ export const fetchCurrentStock = createAsyncThunk(
     const url = param.substr(0, separationPoint);
     console.log(url);
     const date = param.substr(separationPoint);
-    console.log(date);
     const response = await fetch(url)
       .then((res) => res.json());
-    console.log(response);
-    console.log(url);
-    console.log(date);
     return {
       response,
       date,
@@ -45,21 +41,27 @@ const homeSlice = createSlice({
         let obj = {};
         const data = action.payload.response;
         const date = action.payload.date;
+        const historical = data.historical;
         console.log(data, date);
         let newData = {};
-        if (action.payload[0]) {
+        if (historical) {
+          console.log('sucess');
+          console.log(historical[0].date);
+          console.log(date);
+          const filtered = historical.filter((day) => day.date === date);
+          console.log(historical);
           const {
-            symbol: company,
-            price: stockPrice,
+            close: stockPrice,
             volume: stockVolume,
-          } = data;
+          } = filtered[0];
           newData = {
-            company,
+            company: data.symbol,
             stockPrice,
             stockVolume,
           };
           console.log('one dispatch', newData);
         } else {
+          console.log('failed');
           const urlString = action.meta.arg;
           const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
           console.log(companyStr);
@@ -76,8 +78,8 @@ const homeSlice = createSlice({
           statusHome: 'fulfilled',
         };
         obj.resultData.sort((a, b) => {
-          if (a.company < b.company) { return -1; }
-          if (a.company > b.company) { return 1; }
+          if (b.stockPrice < a.stockPrice) { return -1; }
+          if (b.stockPrice > a.stockPrice) { return 1; }
           return 0;
         });
         return obj;
