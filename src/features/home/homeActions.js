@@ -8,10 +8,21 @@ const initialState = {
 
 export const fetchCurrentStock = createAsyncThunk(
   'home/fetchCurrentStock',
-  async (url) => {
+  async (param) => {
+    const separationPoint = param.length - 10;
+    const url = param.substr(0, separationPoint);
+    console.log(url);
+    const date = param.substr(separationPoint);
+    console.log(date);
     const response = await fetch(url)
       .then((res) => res.json());
-    return response;
+    console.log(response);
+    console.log(url);
+    console.log(date);
+    return {
+      response,
+      date,
+    };
   },
 );
 
@@ -32,7 +43,9 @@ const homeSlice = createSlice({
       }))
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
-        const data = action.payload[0];
+        const data = action.payload.response;
+        const date = action.payload.date;
+        console.log(data, date);
         let newData = {};
         if (action.payload[0]) {
           const {
@@ -48,7 +61,7 @@ const homeSlice = createSlice({
           console.log('one dispatch', newData);
         } else {
           const urlString = action.meta.arg;
-          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
+          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
           console.log(companyStr);
           newData = {
             company: companyStr,
