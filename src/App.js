@@ -7,7 +7,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import NavigationBar from './features/navbar/NavigationBar';
 import Home from './features/home/Home';
-import StockPrice from './features/stockPrice/StockPrice';
 import Details from './features/details/Details';
 import './App.css';
 
@@ -20,7 +19,6 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/stockPrice" element={<StockPrice />} />
           <Route path="/details" element={<Details />} />
         </Routes>
       </Router>

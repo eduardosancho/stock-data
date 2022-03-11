@@ -13,11 +13,6 @@ const NavigationBar = () => {
     },
     {
       id: 2,
-      path: '/stockPrice',
-      text: 'Stock Price',
-    },
-    {
-      id: 3,
       path: '/details',
       text: 'Details',
     },
