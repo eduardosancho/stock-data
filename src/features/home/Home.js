@@ -1,19 +1,31 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
+import CardGroup from 'react-bootstrap/CardGroup';
+import StockCard from '../stockCard/StockCard';
 import {
-  selectResults,
-  selectTotal,
   selectStatusHome,
+  fetchCurrentStock,
+  selectResultData,
 } from './homeActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
-  const countries = useSelector(selectResults);
-  const total = useSelector(selectTotal);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=52fdd430ffd03a27128580af9ddc7381'));
+    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=52fdd430ffd03a27128580af9ddc7381'));
+    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=52fdd430ffd03a27128580af9ddc7381'));
+    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=52fdd430ffd03a27128580af9ddc7381'));
+    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=52fdd430ffd03a27128580af9ddc7381'));
+    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=52fdd430ffd03a27128580af9ddc7381'));
+  }, []);
+
+  const resultData = useSelector(selectResultData);
   const status = useSelector(selectStatusHome);
 
-  if (status === 'loading' || status === 'idle') return <p>Not ready</p>;
+  if (status === 'loading' || status === 'idle') return <p>Loading...</p>;
 
   const currentYear = new Date().getFullYear();
   const years = [];
@@ -22,20 +34,25 @@ const Home = () => {
   }
 
   return (
-    <Form className="d-flex border-1 mx-auto w-100 justify-content-center">
-      <Form.Group controlId="formCompanyName">
-        <Form.Label>NSE Abbreviation</Form.Label>
-        <Form.Control type="text" placeholder="Amazon => AMZN" className="py-2" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formYear">
-        <Form.Label>Filter Year</Form.Label>
-        <Form.Select aria-label="Default select example" size="sm" className="mh-25 py-2" style={{ fontSize: '1rem' }}>
-          {years.reverse().map((year) => (
-            <option key={year} value={year}>{year}</option>
-          ))}
-        </Form.Select>
-      </Form.Group>
-    </Form>
+    <>
+      <Form className="d-flex border-1 mx-auto w-100 justify-content-center">
+        <Form.Group controlId="formCompanyName">
+          <Form.Label>NSE Abbreviation</Form.Label>
+          <Form.Control type="text" placeholder="Amazon => AMZN" className="py-2" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formYear">
+          <Form.Label>Filter Year</Form.Label>
+          <Form.Select aria-label="Default select example" size="sm" className="mh-25 py-2" style={{ fontSize: '1rem' }}>
+            {years.reverse().map((year) => (
+              <option key={year} value={year}>{year}</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+      </Form>
+      <CardGroup>
+        {resultData?.map((result) => <StockCard key={result.company} data={result} />)}
+      </CardGroup>
+    </>
   );
 };
 
