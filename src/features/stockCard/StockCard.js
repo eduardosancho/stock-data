@@ -1,19 +1,24 @@
 import { NavLink } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 import propTypes from 'prop-types';
 
 const StockCard = (props) => {
   const { data } = props;
   return (
-    <NavLink key={data.company} to="/details" className="col-6" activeclassname="active-link">
-      <Card>
+    <NavLink key={data.company} to="/details" className="col-6 text-decoration-none" activeclassname="active-link">
+      <Card variant="Light" className="text-dark">
         <Card.Body>
           <Card.Title>{data.company}</Card.Title>
-          <ListGroup>
-            <ListGroup.Item>{data.stockPrice}</ListGroup.Item>
-            <ListGroup.Item>{data.stockVolume}</ListGroup.Item>
-          </ListGroup>
+          <Card.Text>
+            <strong>Current Stock Price:</strong>
+            <br />
+            {data.stockPrice}
+          </Card.Text>
+          <Card.Text>
+            <strong>Current Stock Volume:</strong>
+            <br />
+            {data.stockVolume}
+          </Card.Text>
         </Card.Body>
       </Card>
     </NavLink>
