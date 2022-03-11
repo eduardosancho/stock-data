@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CardGroup from 'react-bootstrap/CardGroup';
-import DateForm from '../form/DateForm';
 import StockCard from '../stockCard/StockCard';
 import {
   selectStatusHome,
@@ -30,7 +29,6 @@ const Home = () => {
 
   return (
     <>
-      <DateForm />
       <CardGroup className="d-flex flex-wrap">
         {resultData?.map((result) => <StockCard key={result.company} data={result} />)}
       </CardGroup>
