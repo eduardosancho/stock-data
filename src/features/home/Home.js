@@ -49,7 +49,7 @@ const Home = () => {
           </Form.Select>
         </Form.Group>
       </Form>
-      <CardGroup>
+      <CardGroup className="d-flex flex-wrap">
         {resultData?.map((result) => <StockCard key={result.company} data={result} />)}
       </CardGroup>
     </>

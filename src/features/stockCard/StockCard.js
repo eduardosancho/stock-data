@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 const StockCard = (props) => {
   const { data } = props;
   return (
-    <Card>
+    <Card className="col-6">
       <Card.Body>
         <Card.Title>{data.company}</Card.Title>
         <ListGroup>
