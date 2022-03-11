@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import propTypes from 'prop-types';
 
 const StockCard = (props) => {
   const { data } = props;
@@ -14,6 +15,10 @@ const StockCard = (props) => {
       </Card.Body>
     </Card>
   );
+};
+
+StockCard.propTypes = {
+  data: propTypes.objectOf(String).isRequired,
 };
 
 export default StockCard;
