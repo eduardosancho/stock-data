@@ -33,39 +33,40 @@ const homeSlice = createSlice({
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
         const data = action.payload[0];
+        let newData = {};
         if (action.payload[0]) {
           const {
             symbol: company,
             price: stockPrice,
             volume: stockVolume,
           } = data;
-          const newData = {
+          newData = {
             company,
             stockPrice,
             stockVolume,
           };
           console.log('one dispatch', newData);
-          obj = {
-            ...state,
-            resultData: [...state.resultData, newData],
-            statusHome: 'fulfilled',
-          };
         } else {
           const urlString = action.meta.arg;
           const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
           console.log(companyStr);
-          const newData = {
+          newData = {
             company: companyStr,
             stockPrice: 'currently not available',
             stockVolume: 'please try again',
           };
           console.log(action.payload);
-          obj = {
-            ...state,
-            resultData: [...state.resultData, newData],
-            statusHome: 'fulfilled',
-          };
         }
+        obj = {
+          ...state,
+          resultData: [...state.resultData, newData],
+          statusHome: 'fulfilled',
+        };
+        obj.resultData.sort((a, b) => {
+          if (a.company < b.company) { return -1; }
+          if (a.company > b.company) { return 1; }
+          return 0;
+        });
         return obj;
       });
   },
