@@ -8,6 +8,8 @@ import {
   selectResultData,
 } from './homeActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DateForm from '../forms/DateForm';
+import SearchForm from '../forms/SearchForm';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,9 +31,13 @@ const Home = () => {
 
   return (
     <>
+      <DateForm />
       <CardGroup className="d-flex flex-wrap">
         {resultData?.map((result) => <StockCard key={result.company} data={result} />)}
       </CardGroup>
+      <footer>
+        <SearchForm />
+      </footer>
     </>
   );
 };
