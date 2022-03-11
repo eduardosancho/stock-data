@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const SearchForm = () => {
   const currentYear = new Date().getFullYear();
@@ -8,16 +9,19 @@ const SearchForm = () => {
   }
 
   return (
-    <Form className="d-flex border-1 mx-auto w-100 justify-content-center">
-      <Form.Group controlId="formCompanyName">
-        <Form.Label>
-          Search for a specific company
-          <br />
-          Use NSE Abbreviation:
-          {'\n'}
-          <em>Apple =&gt; AAPL</em>
-        </Form.Label>
-        <Form.Control type="text" placeholder="Amazon => AMZN" className="py-2" />
+    <Form className="d-flex flex-column border-1 mx-auto w-100 justify-content-center gap-2">
+      <Form.Label>
+        Search for a specific company
+        <br />
+        Use NSE Abbreviation:
+        {'\n'}
+        <em>Apple =&gt; AAPL</em>
+      </Form.Label>
+      <Form.Group controlId="formCompanyName" className="d-flex justify-content-center gap-3">
+        <Form.Control type="text" placeholder="Amazon => AMZN" className="py-2 w-50" />
+        <Button type="submit" className="align-self-center">
+          Search
+        </Button>
       </Form.Group>
     </Form>
   );
