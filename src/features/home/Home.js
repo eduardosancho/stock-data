@@ -12,18 +12,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=52fdd430ffd03a27128580af9ddc7381'));
-    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=52fdd430ffd03a27128580af9ddc7381'));
-    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=52fdd430ffd03a27128580af9ddc7381'));
-    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=52fdd430ffd03a27128580af9ddc7381'));
-    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=52fdd430ffd03a27128580af9ddc7381'));
-    dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=52fdd430ffd03a27128580af9ddc7381'));
-  }, []);
-
   const resultData = useSelector(selectResultData);
   const status = useSelector(selectStatusHome);
+
+  useEffect(() => {
+    if (resultData.length === 0) {
+      dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=52fdd430ffd03a27128580af9ddc7381'));
+      dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=52fdd430ffd03a27128580af9ddc7381'));
+      dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=52fdd430ffd03a27128580af9ddc7381'));
+      dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=52fdd430ffd03a27128580af9ddc7381'));
+      dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=52fdd430ffd03a27128580af9ddc7381'));
+      dispatch(fetchCurrentStock('https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=52fdd430ffd03a27128580af9ddc7381'));
+    }
+  }, []);
 
   if (status === 'loading' || status === 'idle') return <p>Loading...</p>;
 
