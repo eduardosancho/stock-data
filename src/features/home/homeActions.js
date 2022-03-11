@@ -32,8 +32,8 @@ const homeSlice = createSlice({
       }))
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
+        const data = action.payload[0];
         if (action.payload[0]) {
-          const data = action.payload[0];
           const {
             symbol: company,
             price: stockPrice,
@@ -51,9 +51,18 @@ const homeSlice = createSlice({
             statusHome: 'fulfilled',
           };
         } else {
+          const urlString = action.meta.arg;
+          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
+          console.log(companyStr);
+          const newData = {
+            company: companyStr,
+            stockPrice: 'currently not available',
+            stockVolume: 'please try again',
+          };
           console.log(action.payload);
           obj = {
             ...state,
+            resultData: [...state.resultData, newData],
             statusHome: 'fulfilled',
           };
         }
