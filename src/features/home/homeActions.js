@@ -11,7 +11,6 @@ export const fetchCurrentStock = createAsyncThunk(
   async (param) => {
     const separationPoint = param.length - 10;
     const url = param.substr(0, separationPoint);
-    console.log(url);
     const date = param.substr(separationPoint);
     const response = await fetch(url)
       .then((res) => res.json());
@@ -33,7 +32,7 @@ const homeSlice = createSlice({
     cleanData: (state) => ({
       ...state,
       resultData: [],
-    }) 
+    }),
   },
   extraReducers: (builder) => {
     builder
@@ -44,13 +43,11 @@ const homeSlice = createSlice({
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
         const data = action.payload.response;
-        const date = action.payload.date;
-        const historical = data.historical;
-        console.log(data, date);
+        const { date } = action.payload;
+        const { historical } = data;
         let newData = {};
         if (historical) {
           const filtered = historical.filter((day) => day.date === date);
-          console.log(historical);
           const {
             close: stockPrice,
             volume: stockVolume,
@@ -60,18 +57,14 @@ const homeSlice = createSlice({
             stockPrice,
             stockVolume,
           };
-          console.log('one dispatch', newData);
         } else {
-          console.log('failed');
           const urlString = action.meta.arg;
           const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
-          console.log(companyStr);
           newData = {
             company: companyStr,
             stockPrice: 'currently not available',
             stockVolume: 'please try again',
           };
-          console.log(action.payload);
         }
         obj = {
           ...state,
