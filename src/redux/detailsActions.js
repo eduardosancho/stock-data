@@ -32,11 +32,20 @@ const detailsSlice = createSlice({
       }))
       .addCase(fetchCompanyRating.fulfilled, (state, action) => {
         const ratingData = action.payload[0];
-        return ({
-          ...state,
-          ratingData,
-          statusDetails: 'fulfilled',
-        });
+        let obj = {};
+        if (ratingData) {
+          obj = {
+            ...state,
+            ratingData,
+            statusDetails: 'fulfilled',
+          };
+        } else {
+          obj = {
+            ...state,
+            statusDetails: 'unavailable',
+          };
+        }
+        return obj;
       });
   },
 });

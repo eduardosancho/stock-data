@@ -7,7 +7,7 @@
 
 > Mobile Application that shows historical stock prices, and buy recommendation on specific stocks.
 
-![screenshot](./public/assets/screenshot.png)
+![screenshot](./src/assets/screenshot.png)
 
 ## Live Demo
 

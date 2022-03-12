@@ -13,7 +13,26 @@ const Details = () => {
   const companyRating = useSelector(selectCompanyRating);
   const status = useSelector(selectStatusDetails);
 
-  if (status === 'loading' || status === 'idle') return <p>Loading...</p>;
+  if (status === 'loading' || status === 'idle') {
+    return (
+      <>
+        <p>Loading...</p>
+        <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
+          <p className="ml-0 mr-auto">Back to home</p>
+        </NavLink>
+      </>
+    );
+  }
+  if (status === 'unavailable') {
+    return (
+      <>
+        <p>Data unavailable, try again tomorrow</p>
+        <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
+          <p className="ml-0 mr-auto">Back to home</p>
+        </NavLink>
+      </>
+    );
+  }
 
   return (
     <div className="d-flex flex-column">
