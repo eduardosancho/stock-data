@@ -1,4 +1,6 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
 import {
@@ -14,11 +16,14 @@ const Details = () => {
   if (status === 'loading' || status === 'idle') return <p>Loading...</p>;
 
   return (
-    <>
+    <div className="d-flex flex-column">
+      <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
+        <p className="ml-0 mr-auto">Back to home</p>
+      </NavLink>
       <h1>{companyRating.symbol}</h1>
       <h3>{companyRating.date}</h3>
       <h5>
-        Rating 1-5:
+        &ldquo;Should you buy?&ldquo; (1-5):
         {'\n'}
         {companyRating.ratingScore}
       </h5>
@@ -78,7 +83,7 @@ const Details = () => {
           {companyRating.ratingDetailsPBRecommendation}
         </ListGroup.Item>
       </ListGroup>
-    </>
+    </div>
   );
 };
 

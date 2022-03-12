@@ -4,7 +4,7 @@ import render, { screen } from './test-utils';
 import Home from '../features/home/Home';
 
 const handlers = [
-  rest.get('https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=ac20e3a1c1863a3ebafe49107c5c4169', (req, res, ctx) => res(
+  rest.get('https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=a91d1c37e8df6ad18c31120dc55edfeb', (req, res, ctx) => res(
     ctx.json(
       {
         symbol: 'FB',
