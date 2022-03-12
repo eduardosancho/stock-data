@@ -52,6 +52,7 @@ const detailsSlice = createSlice({
 
 export const selectCompanyRating = (state) => state.details.ratingData;
 export const selectStatusDetails = (state) => state.details.statusDetails;
+export const selectPageState = (state) => state.details.currentPage;
 
 export const { page } = detailsSlice.actions;
 

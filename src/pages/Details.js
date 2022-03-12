@@ -1,6 +1,4 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
 import {
@@ -17,28 +15,19 @@ const Details = () => {
     return (
       <>
         <p>Loading...</p>
-        <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
-          <p className="ml-0 mr-auto">Back to home</p>
-        </NavLink>
       </>
     );
   }
   if (status === 'unavailable') {
     return (
       <>
-        <p>Data unavailable, try again tomorrow</p>
-        <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
-          <p className="ml-0 mr-auto">Back to home</p>
-        </NavLink>
+        <p>Sorry... data unavailable, try again tomorrow</p>
       </>
     );
   }
 
   return (
     <div className="d-flex flex-column">
-      <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
-        <p className="ml-0 mr-auto">Back to home</p>
-      </NavLink>
       <h1>{companyRating.symbol}</h1>
       <h3>{companyRating.date}</h3>
       <h5>

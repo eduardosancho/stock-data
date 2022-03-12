@@ -4,13 +4,21 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import propTypes from 'prop-types';
 import { fetchCompanyRating } from '../redux/detailsActions';
+import { page } from '../redux/homeActions';
 
 const StockCard = (props) => {
   const dispatch = useDispatch();
   const { data } = props;
   return (
     <NavLink key={uuidv4()} to="/details" className="col-6 text-decoration-none" activeclassname="active-link">
-      <Card variant="Light" className="text-dark" onClick={() => dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=a91d1c37e8df6ad18c31120dc55edfeb`))}>
+      <Card
+        variant="Light"
+        className="text-dark"
+        onClick={() => {
+          dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=a91d1c37e8df6ad18c31120dc55edfeb`));
+          dispatch(page('details'));
+        }}
+      >
         <Card.Body>
           <Card.Title>{data.company}</Card.Title>
           <Card.Text>
