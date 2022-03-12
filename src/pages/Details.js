@@ -1,32 +1,51 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
 import {
   selectStatusDetails,
   selectCompanyRating,
-} from './detailsActions';
+} from '../redux/detailsActions';
+import '../styles/Details.css';
+import graph from '../assets/graph.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Details = () => {
   const companyRating = useSelector(selectCompanyRating);
   const status = useSelector(selectStatusDetails);
 
-  if (status === 'loading' || status === 'idle') return <p>Loading...</p>;
+  if (status === 'loading' || status === 'idle') {
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    );
+  }
+  if (status === 'unavailable') {
+    return (
+      <>
+        <p>Sorry... data unavailable, try again tomorrow</p>
+      </>
+    );
+  }
 
   return (
     <div className="d-flex flex-column">
-      <NavLink key={uuidv4()} to="/" className="text-decoration-none align-self-start m-3" activeclassname="active-link">
-        <p className="ml-0 mr-auto">Back to home</p>
-      </NavLink>
-      <h1>{companyRating.symbol}</h1>
-      <h3>{companyRating.date}</h3>
-      <h5>
-        &ldquo;Should you buy?&ldquo; (1-5):
-        {'\n'}
-        {companyRating.ratingScore}
-      </h5>
+      <div className="details-header p-3">
+        <div className="target-container">
+          <img src={graph} alt="stock" className="target" />
+        </div>
+        <div className="header-container">
+          <h1>{companyRating.symbol}</h1>
+          <h3>{companyRating.date}</h3>
+          <h5>
+            &ldquo;Should you buy?&ldquo;:
+            {'\n'}
+            {companyRating.ratingScore}
+            /5
+          </h5>
+        </div>
+      </div>
+      <div className="details-title">Breakdown of &ldquo;Buy Recommendation&ldquo;</div>
       <ListGroup>
         <ListGroup.Item>
           DCF Score:

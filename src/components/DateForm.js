@@ -4,8 +4,9 @@ import { useDispatch } from 'react-redux';
 import {
   cleanData,
   fetchCurrentStock,
-} from '../home/homeActions';
+} from '../redux/homeActions';
 import today from '../utils';
+import apikey from '../apiKey';
 
 const DateForm = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,12 @@ const DateForm = () => {
   useEffect(() => {
     dispatch(cleanData());
     if (date !== '') {
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/GOOGL?apikey=a91d1c37e8df6ad18c31120dc55edfeb${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/MSFT?apikey=a91d1c37e8df6ad18c31120dc55edfeb${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=a91d1c37e8df6ad18c31120dc55edfeb${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AMZN?apikey=a91d1c37e8df6ad18c31120dc55edfeb${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/TSLA?apikey=a91d1c37e8df6ad18c31120dc55edfeb${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=a91d1c37e8df6ad18c31120dc55edfeb${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/GOOGL?apikey=${apikey}${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/MSFT?apikey=${apikey}${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=${apikey}${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AMZN?apikey=${apikey}${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/TSLA?apikey=${apikey}${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=${apikey}${date}`));
     }
   }, [date]);
 

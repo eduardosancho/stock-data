@@ -5,10 +5,10 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faCheckSquare, faCoffee, faBars, faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import NavigationBar from './features/navbar/NavigationBar';
-import Home from './features/home/Home';
-import Details from './features/details/Details';
-import './App.css';
+import NavigationBar from './components/NavigationBar';
+import Home from './pages/Home';
+import Details from './pages/Details';
+import './styles/App.css';
 
 library.add(fab, faCheckSquare, faCoffee, faBars, faUser);
 

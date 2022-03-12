@@ -1,4 +1,4 @@
-import reducer, { cleanData, page } from '../features/home/homeActions';
+import reducer, { cleanData, page } from '../redux/homeActions';
 
 describe('Testing pure functions home', () => {
   test('should return the initial state', () => {
