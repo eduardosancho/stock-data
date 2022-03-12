@@ -9,6 +9,8 @@ import {
 } from '../redux/homeActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DateForm from '../components/DateForm';
+import '../styles/Home.css';
+import target from '../assets/target.png';
 
 const Home = () => {
   const resultData = useSelector(selectResultData);
@@ -26,6 +28,15 @@ const Home = () => {
   return (
     <>
       <DateForm />
+      <div className="header">
+        <div className="target-container">
+          <img src={target} alt="stock" className="target" />
+        </div>
+        <div className="header-container">
+          <p className="nyse">New York Stock Exchange</p>
+        </div>
+      </div>
+      <div className="home-title">Main Stock Info Filtered By Date</div>
       <CardGroup className="d-flex flex-wrap">
         {resultData?.map((result) => <StockCard key={uuidv4()} data={result} />)}
       </CardGroup>
