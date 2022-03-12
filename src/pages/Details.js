@@ -5,6 +5,8 @@ import {
   selectStatusDetails,
   selectCompanyRating,
 } from '../redux/detailsActions';
+import '../styles/Details.css';
+import graph from '../assets/graph.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Details = () => {
@@ -28,13 +30,21 @@ const Details = () => {
 
   return (
     <div className="d-flex flex-column">
-      <h1>{companyRating.symbol}</h1>
-      <h3>{companyRating.date}</h3>
-      <h5>
-        &ldquo;Should you buy?&ldquo; (1-5):
-        {'\n'}
-        {companyRating.ratingScore}
-      </h5>
+      <div className="details-header p-3">
+        <div className="target-container">
+          <img src={graph} alt="stock" className="target" />
+        </div>
+        <div className="header-container">
+          <h1>{companyRating.symbol}</h1>
+          <h3>{companyRating.date}</h3>
+          <h5>
+            &ldquo;Should you buy?&ldquo;:
+            {'\n'}
+            {companyRating.ratingScore}
+            /5
+          </h5>
+        </div>
+      </div>
       <ListGroup>
         <ListGroup.Item>
           DCF Score:

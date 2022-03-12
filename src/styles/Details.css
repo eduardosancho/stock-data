@@ -1,0 +1,11 @@
+.details-header {
+  display: flex;
+}
+
+.list-group-item:nth-child(odd) {
+  background-color: rgba(85, 121, 219, 0.7);
+}
+
+.list-group-item:nth-child(even) {
+  background-color: rgba(72, 101, 179, 0.9);
+}
