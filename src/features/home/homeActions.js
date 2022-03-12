@@ -30,6 +30,10 @@ const homeSlice = createSlice({
       ...state,
       currentPage: action.payload,
     }),
+    cleanData: (state) => ({
+      ...state,
+      resultData: [],
+    }) 
   },
   extraReducers: (builder) => {
     builder
@@ -45,9 +49,6 @@ const homeSlice = createSlice({
         console.log(data, date);
         let newData = {};
         if (historical) {
-          console.log('sucess');
-          console.log(historical[0].date);
-          console.log(date);
           const filtered = historical.filter((day) => day.date === date);
           console.log(historical);
           const {
@@ -92,6 +93,6 @@ export const selectStatusHome = (state) => state.home.statusHome;
 export const selectTotal = (state) => state.home.total;
 export const selectPageState = (state) => state.home.currentPage;
 
-export const { page } = homeSlice.actions;
+export const { page, cleanData } = homeSlice.actions;
 
 export default homeSlice.reducer;

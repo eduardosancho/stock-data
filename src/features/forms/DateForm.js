@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   page,
+  cleanData,
   selectPageState,
   selectResultData,
   fetchCurrentStock,
@@ -23,14 +24,15 @@ const DateForm = () => {
 
   useEffect(() => {
     console.log('waiting for date');
-    if (resultData.length === 0 && date !== '') {
+    dispatch(cleanData());
+    if (date !== '') {
       console.log(date);
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/GOOGL?apikey=561345289b18139414e4666ddaff1fd3${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/MSFT?apikey=561345289b18139414e4666ddaff1fd3${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=561345289b18139414e4666ddaff1fd3${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AMZN?apikey=561345289b18139414e4666ddaff1fd3${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/TSLA?apikey=561345289b18139414e4666ddaff1fd3${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=561345289b18139414e4666ddaff1fd3${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/GOOGL?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/MSFT?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AMZN?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/TSLA?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
     }
   }, [date]);
 
