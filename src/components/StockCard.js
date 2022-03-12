@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import propTypes from 'prop-types';
 import { fetchCompanyRating } from '../redux/detailsActions';
 import { page } from '../redux/homeActions';
+import apiKey from '../apiKey';
 
 const StockCard = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const StockCard = (props) => {
         variant="Light"
         className="text-dark"
         onClick={() => {
-          dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=a91d1c37e8df6ad18c31120dc55edfeb`));
+          dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=${apiKey}`));
           dispatch(page('details'));
         }}
       >

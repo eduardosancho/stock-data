@@ -10,7 +10,6 @@ const NavigationBar = () => {
   const dispatch = useDispatch();
   const navitage = useNavigate();
   const currentPage = useSelector(selectPageState);
-  console.log(currentPage);
 
   return (
     <Navbar bg="dark" variant="dark">

@@ -2,9 +2,10 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import render, { screen } from './test-utils';
 import Home from '../pages/Home';
+import apikey from '../apiKey';
 
 const handlers = [
-  rest.get('https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=a91d1c37e8df6ad18c31120dc55edfeb', (req, res, ctx) => res(
+  rest.get(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=${apikey}`, (req, res, ctx) => res(
     ctx.json(
       {
         symbol: 'FB',
