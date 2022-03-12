@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -15,13 +15,13 @@ library.add(fab, faCheckSquare, faCoffee, faBars, faUser);
 function App() {
   return (
     <div className="App">
-      <Router>
+      <>
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/details" element={<Details />} />
         </Routes>
-      </Router>
+      </>
     </div>
   );
 }
