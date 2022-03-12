@@ -7,23 +7,23 @@ const handlers = [
   rest.get('https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=ac20e3a1c1863a3ebafe49107c5c4169', (req, res, ctx) => res(
     ctx.json(
       {
-      "symbol": "FB",
-      "historical": [{
-        "date": "2022-03-10",
-        "open": 192.635,
-        "high": 193.56,
-        "low": 186.67,
-        "close": 187.61,
-        "adjClose": 187.61,
-        "volume": 3.4231161E7,
-        "unadjustedVolume": 3.4231161E7,
-        "change": -5.025,
-        "changePercent": -2.609,
-        "vwap": 189.28,
-        "label": "March 11, 22",
-        "changeOverTime": -0.02609
-      }]
-      }
+        symbol: 'FB',
+        historical: [{
+          date: '2022-03-10',
+          open: 192.635,
+          high: 193.56,
+          low: 186.67,
+          close: 187.61,
+          adjClose: 187.61,
+          volume: 3.4231161E7,
+          unadjustedVolume: 3.4231161E7,
+          change: -5.025,
+          changePercent: -2.609,
+          vwap: 189.28,
+          label: 'March 11, 22',
+          changeOverTime: -0.02609,
+        }],
+      },
     ),
     ctx.delay(150),
   )),
