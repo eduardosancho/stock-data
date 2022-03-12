@@ -1,0 +1,13 @@
+.card {
+  background-color: rgba(85, 121, 219, 0.9);
+  border-radius: 0;
+  border: 0.5px groove;
+}
+
+.card-body {
+  color: white;
+}
+
+.card-title {
+  font-weight: bolder;
+}

@@ -1,0 +1,41 @@
+.card-group {
+  background-color: transparent;
+}
+
+.header {
+  display: flex;
+  background-color: rgb(93, 141, 180);
+  color: white;
+  font-weight: bolder;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  justify-content: center;
+  align-items: center;
+}
+
+.nyse {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.target-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.target {
+  width: 6rem;
+}
+
+.home-title {
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+  font-weight: bold;
+}
