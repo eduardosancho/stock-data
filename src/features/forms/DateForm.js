@@ -19,12 +19,12 @@ const DateForm = () => {
   useEffect(() => {
     dispatch(cleanData());
     if (date !== '') {
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/GOOGL?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/MSFT?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AMZN?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/TSLA?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
-      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=52fdd430ffd03a27128580af9ddc7381${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/GOOGL?apikey=ac20e3a1c1863a3ebafe49107c5c4169${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/MSFT?apikey=ac20e3a1c1863a3ebafe49107c5c4169${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=ac20e3a1c1863a3ebafe49107c5c4169${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/AMZN?apikey=ac20e3a1c1863a3ebafe49107c5c4169${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/TSLA?apikey=ac20e3a1c1863a3ebafe49107c5c4169${date}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=ac20e3a1c1863a3ebafe49107c5c4169${date}`));
     }
   }, [date]);
 
@@ -34,7 +34,6 @@ const DateForm = () => {
         <Form.Label>Filter By Year:</Form.Label>
         {date}
         <Form.Control
-          id="start"
           type="date"
           value={date}
           min="2017-03-13"
