@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../assets/logo.svg';
+import logo from '../assets/logo.svg';
 
 const NavigationBar = () => (
   <Navbar bg="dark" variant="dark">

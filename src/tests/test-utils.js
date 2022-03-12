@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { render as rtlRender } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import homeReducer from '../features/home/homeActions';
-import detailsReducer from '../features/details/detailsActions';
+import homeReducer from '../redux/homeActions';
+import detailsReducer from '../redux/detailsActions';
 
 function render(
   ui,

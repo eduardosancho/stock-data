@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import render, { screen } from './test-utils';
-import Home from '../features/home/Home';
+import Home from '../pages/Home';
 
 const handlers = [
   rest.get('https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=a91d1c37e8df6ad18c31120dc55edfeb', (req, res, ctx) => res(
@@ -9,7 +9,7 @@ const handlers = [
       {
         symbol: 'FB',
         historical: [{
-          date: '2022-03-10',
+          date: '2022-03-11',
           open: 192.635,
           high: 193.56,
           low: 186.67,

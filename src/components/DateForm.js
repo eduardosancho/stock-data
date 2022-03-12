@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import {
   cleanData,
   fetchCurrentStock,
-} from '../home/homeActions';
+} from '../redux/homeActions';
 import today from '../utils';
 
 const DateForm = () => {

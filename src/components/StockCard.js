@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import propTypes from 'prop-types';
-import { fetchCompanyRating } from '../details/detailsActions';
+import { fetchCompanyRating } from '../redux/detailsActions';
 
 const StockCard = (props) => {
   const dispatch = useDispatch();

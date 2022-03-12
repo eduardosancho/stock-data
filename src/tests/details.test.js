@@ -1,4 +1,4 @@
-import reducer from '../features/details/detailsActions';
+import reducer from '../redux/detailsActions';
 
 describe('Testing pure functions details', () => {
   test('should return the initial state', () => {

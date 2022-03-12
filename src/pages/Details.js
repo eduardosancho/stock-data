@@ -6,7 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import {
   selectStatusDetails,
   selectCompanyRating,
-} from './detailsActions';
+} from '../redux/detailsActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Details = () => {
