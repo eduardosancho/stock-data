@@ -9,7 +9,7 @@ const StockCard = (props) => {
   const { data } = props;
   return (
     <NavLink key={data.company} to="/details" className="col-6 text-decoration-none" activeclassname="active-link">
-      <Card variant="Light" className="text-dark" onClick={() => dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=561345289b18139414e4666ddaff1fd3`))}>
+      <Card variant="Light" className="text-dark" onClick={() => dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=52fdd430ffd03a27128580af9ddc7381`))}>
         <Card.Body>
           <Card.Title>{data.company}</Card.Title>
           <Card.Text>

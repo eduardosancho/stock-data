@@ -8,10 +8,16 @@ const initialState = {
 
 export const fetchCurrentStock = createAsyncThunk(
   'home/fetchCurrentStock',
-  async (url) => {
+  async (param) => {
+    const separationPoint = param.length - 10;
+    const url = param.substr(0, separationPoint);
+    const date = param.substr(separationPoint);
     const response = await fetch(url)
       .then((res) => res.json());
-    return response;
+    return {
+      response,
+      date,
+    };
   },
 );
 
@@ -23,6 +29,10 @@ const homeSlice = createSlice({
       ...state,
       currentPage: action.payload,
     }),
+    cleanData: (state) => ({
+      ...state,
+      resultData: [],
+    }),
   },
   extraReducers: (builder) => {
     builder
@@ -32,30 +42,29 @@ const homeSlice = createSlice({
       }))
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
-        const data = action.payload[0];
+        const data = action.payload.response;
+        const { date } = action.payload;
+        const { historical } = data;
         let newData = {};
-        if (action.payload[0]) {
+        if (historical) {
+          const filtered = historical.filter((day) => day.date === date);
           const {
-            symbol: company,
-            price: stockPrice,
+            close: stockPrice,
             volume: stockVolume,
-          } = data;
+          } = filtered[0];
           newData = {
-            company,
+            company: data.symbol,
             stockPrice,
             stockVolume,
           };
-          console.log('one dispatch', newData);
         } else {
           const urlString = action.meta.arg;
-          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
-          console.log(companyStr);
+          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
           newData = {
             company: companyStr,
             stockPrice: 'currently not available',
             stockVolume: 'please try again',
           };
-          console.log(action.payload);
         }
         obj = {
           ...state,
@@ -63,8 +72,8 @@ const homeSlice = createSlice({
           statusHome: 'fulfilled',
         };
         obj.resultData.sort((a, b) => {
-          if (a.company < b.company) { return -1; }
-          if (a.company > b.company) { return 1; }
+          if (b.stockPrice < a.stockPrice) { return -1; }
+          if (b.stockPrice > a.stockPrice) { return 1; }
           return 0;
         });
         return obj;
@@ -77,6 +86,6 @@ export const selectStatusHome = (state) => state.home.statusHome;
 export const selectTotal = (state) => state.home.total;
 export const selectPageState = (state) => state.home.currentPage;
 
-export const { page } = homeSlice.actions;
+export const { page, cleanData } = homeSlice.actions;
 
 export default homeSlice.reducer;
