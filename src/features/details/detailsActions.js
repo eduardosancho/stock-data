@@ -31,9 +31,6 @@ const detailsSlice = createSlice({
         statusDetails: 'loading',
       }))
       .addCase(fetchCompanyRating.fulfilled, (state, action) => {
-        // let obj = {};
-        // const data = action.payload[0];
-        // let newData = {};
         const ratingData = action.payload[0];
         return ({
           ...state,
