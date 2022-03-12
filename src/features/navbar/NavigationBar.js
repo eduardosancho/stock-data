@@ -10,7 +10,7 @@ const NavigationBar = () => (
       <NavLink to="/" className="links" activeclassname="active-link">
         <FontAwesomeIcon icon="bars" size="xl" color="#fff" />
       </NavLink>
-      <NavLink to="/" className="links" activeclassname="active-link">
+      <NavLink to="/" className="links text-decoration-none" activeclassname="active-link">
         <Navbar.Brand to="/">
           <img
             alt="logo"

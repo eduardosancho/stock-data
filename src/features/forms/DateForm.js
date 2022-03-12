@@ -29,7 +29,7 @@ const DateForm = () => {
   }, [date]);
 
   return (
-    <Form className="d-flex flex-column border-1 mx-auto w-100 justify-content-center">
+    <Form className="d-flex flex-column border-1 m-2 w-100 justify-content-center">
       <Form.Group className="mb-3 align-self-center" controlId="formYear">
         <Form.Label>Filter By Year:</Form.Label>
         <Form.Control
