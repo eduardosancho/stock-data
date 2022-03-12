@@ -8,7 +8,6 @@ import {
 } from './homeActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DateForm from '../forms/DateForm';
-import SearchForm from '../forms/SearchForm';
 
 const Home = () => {
   const resultData = useSelector(selectResultData);
@@ -19,9 +18,6 @@ const Home = () => {
       <>
         <DateForm />
         <p>Loading...</p>
-        <footer>
-          <SearchForm />
-        </footer>
       </>
     );
   }
@@ -32,9 +28,6 @@ const Home = () => {
       <CardGroup className="d-flex flex-wrap">
         {resultData?.map((result) => <StockCard key={result.company} data={result} />)}
       </CardGroup>
-      <footer>
-        <SearchForm />
-      </footer>
     </>
   );
 };

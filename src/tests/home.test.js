@@ -44,7 +44,6 @@ describe('Testing pure functions home', () => {
       statusHome: 'idle',
       resultData: [],
       currentPage: 'details',
-    })
-  })
-
+    });
+  });
 });
