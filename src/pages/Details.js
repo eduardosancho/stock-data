@@ -45,6 +45,7 @@ const Details = () => {
           </h5>
         </div>
       </div>
+      <div className="details-title">Breakdown of &ldquo;Buy Recommendation&ldquo;</div>
       <ListGroup>
         <ListGroup.Item>
           DCF Score:
