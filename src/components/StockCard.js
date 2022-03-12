@@ -6,12 +6,13 @@ import propTypes from 'prop-types';
 import { fetchCompanyRating } from '../redux/detailsActions';
 import { page } from '../redux/homeActions';
 import apiKey from '../apiKey';
+import '../styles/StockCard.css';
 
 const StockCard = (props) => {
   const dispatch = useDispatch();
   const { data } = props;
   return (
-    <NavLink key={uuidv4()} to="/details" className="col-6 text-decoration-none" activeclassname="active-link">
+    <NavLink key={uuidv4()} to="/details" className="text-decoration-none w-50" activeclassname="active-link">
       <Card
         variant="Light"
         className="text-dark"
@@ -23,12 +24,12 @@ const StockCard = (props) => {
         <Card.Body>
           <Card.Title>{data.company}</Card.Title>
           <Card.Text>
-            <strong>Current Stock Price:</strong>
+            <strong>Stock Price:</strong>
             <br />
             {data.stockPrice}
           </Card.Text>
           <Card.Text>
-            <strong>Current Stock Volume:</strong>
+            <strong>Stock Volume:</strong>
             <br />
             {data.stockVolume}
           </Card.Text>
