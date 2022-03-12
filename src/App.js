@@ -8,7 +8,7 @@ import {
 import NavigationBar from './components/NavigationBar';
 import Home from './pages/Home';
 import Details from './pages/Details';
-import './App.css';
+import './styles/App.css';
 
 library.add(fab, faCheckSquare, faCoffee, faBars, faUser);
 
