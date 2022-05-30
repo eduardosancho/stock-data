@@ -11,12 +11,10 @@ export const fetchCurrentStock = createAsyncThunk(
   async (param) => {
     const separationPoint = param.length;
     const url = param.substr(0, separationPoint);
-    // const date = param.substr(separationPoint);
     const response = await fetch(url)
       .then((res) => res.json());
     return {
       response,
-      // date,
     };
   },
 );
@@ -43,21 +41,7 @@ const homeSlice = createSlice({
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
         const data = action.payload.response[0];
-        // const { date } = action.payload;
-        // const { historical } = data;
         let newData = {};
-        // if (historical) {
-        //   const filtered = historical.filter((day) => day.date === date);
-        //   const {
-        //     close: stockPrice,
-        //     volume: stockVolume,
-        //   } = filtered[0];
-        //   newData = {
-        //     company: data.symbol,
-        //     stockPrice,
-        //     stockVolume,
-        //   };
-        // }
         if (data) {
           newData = {
             company: data.symbol,
@@ -78,11 +62,6 @@ const homeSlice = createSlice({
           resultData: [newData, ...state.resultData],
           statusHome: 'fulfilled',
         };
-        // obj.resultData.sort((a, b) => {
-        //   if (b.stockPrice < a.stockPrice) { return -1; }
-        //   if (b.stockPrice > a.stockPrice) { return 1; }
-        //   return 0;
-        // });
         return obj;
       });
   },
