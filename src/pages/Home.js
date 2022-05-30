@@ -16,7 +16,7 @@ import {
 import StockCard from '../components/StockCard';
 import target from '../assets/target.png';
 // import DateForm from '../components/DateForm';
-import SearchForm from '../components/SearchForm';
+import Footer from '../components/Footer';
 import '../styles/Home.css';
 import apikey from '../apiKey';
 // import today from '../utils';
@@ -30,12 +30,13 @@ const Home = () => {
     // setDate(today());
     dispatch(cleanData());
 
+    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=${apikey}`));
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=${apikey}`));
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=${apikey}`));
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=${apikey}`));
+    // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=${apikey}`));
+    // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=${apikey}`));
+
     // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=${apikey}${date}`));
   }, []);
 
@@ -66,7 +67,7 @@ const Home = () => {
       <CardGroup className="d-flex flex-wrap">
         {resultData?.map((result) => <StockCard key={uuidv4()} data={result} />)}
       </CardGroup>
-      <SearchForm />
+      <Footer />
     </>
   );
 };
