@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  // cleanData,
+  cleanData,
   fetchCurrentStock,
   selectStatusHome,
   selectResultData,
@@ -28,6 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     // setDate(today());
+    dispatch(cleanData());
 
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=${apikey}`));
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=${apikey}`));
