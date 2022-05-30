@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  fetchCurrentStock
+  fetchCurrentStock,
 } from '../redux/homeActions';
 import apikey from '../apiKey';
 

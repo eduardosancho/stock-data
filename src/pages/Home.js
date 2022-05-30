@@ -31,8 +31,8 @@ const Home = () => {
     dispatch(cleanData());
 
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=${apikey}`));
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=${apikey}`));
+    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=${apikey}`));
     dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=${apikey}`));
     // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=${apikey}`));
     // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=${apikey}`));
