@@ -67,7 +67,7 @@ const homeSlice = createSlice({
         }
         else {
           const urlString = action.meta.arg;
-          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
+          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
           newData = {
             company: companyStr,
             stockPrice: 'currently not available',
