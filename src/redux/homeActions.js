@@ -9,14 +9,14 @@ const initialState = {
 export const fetchCurrentStock = createAsyncThunk(
   'home/fetchCurrentStock',
   async (param) => {
-    const separationPoint = param.length - 10;
+    const separationPoint = param.length;
     const url = param.substr(0, separationPoint);
-    const date = param.substr(separationPoint);
+    // const date = param.substr(separationPoint);
     const response = await fetch(url)
       .then((res) => res.json());
     return {
       response,
-      date,
+      // date,
     };
   },
 );
@@ -42,22 +42,30 @@ const homeSlice = createSlice({
       }))
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
-        const data = action.payload.response;
-        const { date } = action.payload;
-        const { historical } = data;
+        const data = action.payload.response[0];
+        // const { date } = action.payload;
+        // const { historical } = data;
         let newData = {};
-        if (historical) {
-          const filtered = historical.filter((day) => day.date === date);
-          const {
-            close: stockPrice,
-            volume: stockVolume,
-          } = filtered[0];
+        // if (historical) {
+        //   const filtered = historical.filter((day) => day.date === date);
+        //   const {
+        //     close: stockPrice,
+        //     volume: stockVolume,
+        //   } = filtered[0];
+        //   newData = {
+        //     company: data.symbol,
+        //     stockPrice,
+        //     stockVolume,
+        //   };
+        // }
+        if (data) {
           newData = {
             company: data.symbol,
-            stockPrice,
-            stockVolume,
-          };
-        } else {
+            stockPrice: data.price,
+            stockVolume: data.volume
+          }
+        }
+        else {
           const urlString = action.meta.arg;
           const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
           newData = {

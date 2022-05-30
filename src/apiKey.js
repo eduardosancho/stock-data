@@ -6,6 +6,6 @@
 // 3b235c9169cd1d86a04787c937345c7c
 // b0c6777db0d0ec6e4faeb85b55e90b1b
 
-const apikey = 'b0c6777db0d0ec6e4faeb85b55e90b1b';
+const apikey = '52fdd430ffd03a27128580af9ddc7381';
 
 export default apikey;
