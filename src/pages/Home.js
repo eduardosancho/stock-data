@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  cleanData,
+  // cleanData,
   fetchCurrentStock,
   selectStatusHome,
   selectResultData,
@@ -26,22 +26,24 @@ const Home = () => {
 
   // const [date, setDate] = useState('');
 
-  useEffect(() => {
-    // setDate(today());
-    dispatch(cleanData());
-
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=${apikey}`));
-    dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=${apikey}`));
-    // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=${apikey}`));
-    // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=${apikey}`));
-
-    // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=${apikey}${date}`));
-  }, []);
-
   const resultData = useSelector(selectResultData);
   const status = useSelector(selectStatusHome);
+
+  useEffect(() => {
+    // setDate(today());
+    // dispatch(cleanData());
+
+    if (resultData.length === 0) {
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/TSLA?apikey=${apikey}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/MSFT?apikey=${apikey}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=${apikey}`));
+      dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AAPL?apikey=${apikey}`));
+      // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/AMZN?apikey=${apikey}`));
+      // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/quote-short/FB?apikey=${apikey}`));
+
+      // dispatch(fetchCurrentStock(`https://financialmodelingprep.com/api/v3/historical-price-full/FB?apikey=${apikey}${date}`));
+    }
+  }, []);
 
   if (status === 'loading' || status === 'idle') {
     return (
