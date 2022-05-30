@@ -75,14 +75,14 @@ const homeSlice = createSlice({
         }
         obj = {
           ...state,
-          resultData: [...state.resultData, newData],
+          resultData: [newData, ...state.resultData],
           statusHome: 'fulfilled',
         };
-        obj.resultData.sort((a, b) => {
-          if (b.stockPrice < a.stockPrice) { return -1; }
-          if (b.stockPrice > a.stockPrice) { return 1; }
-          return 0;
-        });
+        // obj.resultData.sort((a, b) => {
+        //   if (b.stockPrice < a.stockPrice) { return -1; }
+        //   if (b.stockPrice > a.stockPrice) { return 1; }
+        //   return 0;
+        // });
         return obj;
       });
   },
