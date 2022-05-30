@@ -62,10 +62,9 @@ const homeSlice = createSlice({
           newData = {
             company: data.symbol,
             stockPrice: data.price,
-            stockVolume: data.volume
-          }
-        }
-        else {
+            stockVolume: data.volume,
+          };
+        } else {
           const urlString = action.meta.arg;
           const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
           newData = {
