@@ -12,10 +12,10 @@ const StockCard = (props) => {
   const dispatch = useDispatch();
   const { data } = props;
   return (
-    <NavLink key={uuidv4()} to="/details" className="text-decoration-none w-50" activeclassname="active-link">
+    <NavLink key={uuidv4()} to="/details" className="text-decoration-none w-50 align-self-stretch" activeclassname="active-link">
       <Card
         variant="Light"
-        className="text-dark"
+        className="text-dark h-100"
         onClick={() => {
           dispatch(fetchCompanyRating(`https://financialmodelingprep.com/api/v3/rating/${data.company}?apikey=${apiKey}`));
           dispatch(page('details'));

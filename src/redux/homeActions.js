@@ -9,14 +9,12 @@ const initialState = {
 export const fetchCurrentStock = createAsyncThunk(
   'home/fetchCurrentStock',
   async (param) => {
-    const separationPoint = param.length - 10;
+    const separationPoint = param.length;
     const url = param.substr(0, separationPoint);
-    const date = param.substr(separationPoint);
     const response = await fetch(url)
       .then((res) => res.json());
     return {
       response,
-      date,
     };
   },
 );
@@ -42,24 +40,17 @@ const homeSlice = createSlice({
       }))
       .addCase(fetchCurrentStock.fulfilled, (state, action) => {
         let obj = {};
-        const data = action.payload.response;
-        const { date } = action.payload;
-        const { historical } = data;
+        const data = action.payload.response[0];
         let newData = {};
-        if (historical) {
-          const filtered = historical.filter((day) => day.date === date);
-          const {
-            close: stockPrice,
-            volume: stockVolume,
-          } = filtered[0];
+        if (data) {
           newData = {
             company: data.symbol,
-            stockPrice,
-            stockVolume,
+            stockPrice: data.price,
+            stockVolume: data.volume,
           };
         } else {
           const urlString = action.meta.arg;
-          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(63);
+          const companyStr = urlString.substr(0, urlString.indexOf('?')).substr(53);
           newData = {
             company: companyStr,
             stockPrice: 'currently not available',
@@ -68,14 +59,9 @@ const homeSlice = createSlice({
         }
         obj = {
           ...state,
-          resultData: [...state.resultData, newData],
+          resultData: [newData, ...state.resultData],
           statusHome: 'fulfilled',
         };
-        obj.resultData.sort((a, b) => {
-          if (b.stockPrice < a.stockPrice) { return -1; }
-          if (b.stockPrice > a.stockPrice) { return 1; }
-          return 0;
-        });
         return obj;
       });
   },
